@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presensi Mahasiswa</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- NAVBAR -->
+        <nav>
+            <div class="brand">
+                <div class="brand-icon">✓</div>
+                <div>
+                    <h2>HadirKu</h2>
+                    <small>Presensi Mahasiswa</small>
+                </div>
+            </div>
+
+            <div class="date" id="tanggal"></div>
+        </nav>
+
+
+        <!-- WELCOME -->
+        <section class="welcome">
+            <div>
+                <p class="small-title">SISTEM PRESENSI</p>
+                <h1>Selamat Datang 👋</h1>
+                <p>
+                    Kelola kehadiran mahasiswa dengan cepat dan mudah.
+                </p>
+            </div>
+
+            <div class="total-card">
+                <span>Total Mahasiswa</span>
+                <strong>12</strong>
+            </div>
+        </section>
+
+
+        <!-- CONTENT -->
+        <div class="content-grid">
+
+            <!-- QR -->
+            <section class="card qr-card">
+
+                <div class="card-title">
+                    <div>
+                        <span class="number">01</span>
+                        <h2>QR Presensi</h2>
+                    </div>
+
+                    <span class="live">AKTIF</span>
+                </div>
+
+                <div class="qr-area">
+                    <div id="qrcode">
+                        <div class="qr-empty">
+                            QR CODE
+                        </div>
+                    </div>
+                </div>
+
+                <p class="qr-text">
+                    Tunjukkan QR ini kepada mahasiswa
+                </p>
+
+                <div class="qr-buttons">
+                    <button onclick="buatQR()" class="primary">
+                        Buat QR
+                    </button>
+
+                    <button onclick="downloadQR()" class="secondary">
+                        Download
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- GENERATE -->
+            <section class="card">
+
+                <div class="card-title">
+                    <div>
+                        <span class="number">02</span>
+                        <h2>Identitas Mahasiswa</h2>
+                    </div>
+                </div>
+
+                <p class="description">
+                    Masukkan NIM untuk membuat kode identitas mahasiswa.
+                </p>
+
+                <label for="nim">Nomor Induk Mahasiswa</label>
+
+                <input
+                    type="text"
+                    id="nim"
+                    placeholder="Contoh: 23101001"
+                >
+
+                <button onclick="generateMahasiswa()" class="generate">
+                    Generate Identitas
+                </button>
+
+                <div id="hasil" class="hasil">
+                    Belum ada data mahasiswa.
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- SCANNER -->
+        <section class="card scanner">
+
+            <div class="scanner-heading">
+                <div>
+                    <span class="number">03</span>
+                    <h2>Scanner Presensi</h2>
+                </div>
+
+                <span class="camera-status">
+                    ● Siap digunakan
+                </span>
+            </div>
+
+            <div class="scanner-box">
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+                <div class="scan-line"></div>
+
+                <div class="camera-icon">▣</div>
+                <p>Arahkan kamera ke QR mahasiswa</p>
+            </div>
+
+            <button onclick="mulaiScan()" class="scan-button">
+                Mulai Scan
+            </button>
+
+        </section>
+
+
+        <!-- DATA / REKAP KEHADIRAN -->
+<section class="card data-card">
+
+    <div class="data-header">
+        <div>
+            <span class="number">04</span>
+            <h2>Rekap Kehadiran</h2>
+        </div>
+
+        <div class="attendance">
+            <strong id="hadir">12</strong>
+            <span>Mahasiswa</span>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+
+        <table class="rekap-table">
+
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>NAMA MAHASISWA</th>
+                    <th>NPM</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td>Syahrial Zaydan</td>
+                    <td>24105111153</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Najwal Huda</td>
+                    <td>24105111149</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Ziad Azkia</td>
+                    <td>24105111139</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Tiara</td>
+                    <td>24105111152</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>Asmaul Husna</td>
+                    <td>24105111115</td>
+                    <td><span class="belum">Belum Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td>Badratun Nafis</td>
+                    <td>24105111157</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>Dian Namira</td>
+                    <td>24105111158</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>Mukarramah</td>
+                    <td>24105111116</td>
+                    <td><span class="belum">Belum Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>Bunga Wulan Sari</td>
+                    <td>24105111138</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>Marzatillah</td>
+                    <td>24105111160</td>
+                    <td><span class="hadir">Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td>Muharil</td>
+                    <td>-</td>
+                    <td><span class="belum">Belum Hadir</span></td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td>Sayed Mufizar</td>
+                    <td>-</td>
+                    <td><span class="belum">Belum Hadir</span></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+        <footer>
+            <p>© 2026 HadirKu • Sistem Presensi Mahasiswa</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
